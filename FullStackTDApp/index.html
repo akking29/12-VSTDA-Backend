@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app='toDo'>
+<head>
+
+<script   src="http://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js'></script>
+<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script language="javascript" src="app/js/tController.js"></script>
+<script language="javascript" src="app/js/tFactory.js"></script>
+<script language="javascript" src="bower_components/toastr/toastr.js"></script>
+<link rel='stylesheet' href="bower_components/toastr/toastr.css">
+<link rel='stylesheet' href="app/styles/style.css">
+
+
+</head>
+
+<title>To Do's</title>
+<body ng-controller='tCtrl'>
+
+	<div class ='row'>
+			<div class='col-xs-12 col-sm-4'>
+				<form name='taskList' role='form'>
+					<div class='panel panel-info'>
+						<div class='panel-heading'>
+							<h1 class='panel-title'>Add Task</h1>
+							</div>
+							<div class='panel-body'>
+								<div class='form-group'>
+									<label for='taskText'> Text </label>
+									<input type='text' class='form-control' ng-model='newTask.text'/>
+								</div>
+								<div class='form-group'>
+									<label for='taskPriority'> Priority</label>
+									<select id='taskPriority' class='form-control' ng-model='newTask.priority'>
+										<option value='1'>High</option>
+										<option value='2'>Medium</option>
+										<option value='3'>Low</option>
+									</select>	
+								</div>
+							</div>
+							<div class='panel-footer'>
+								<button class='btn btn-primary' ng-click='addTask()'>Add Task</button>
+							</div>
+						</div>
+					</form>		
+				</div>
+			<div class='col-xs-12 col-sm-8'>
+				<div class='container'>
+				<div class='btn-group'>
+					<button type="button" class="btn btn-default" ng-click="sort('priority')">Order by Highest Priority</button>
+					<button type="button" class="btn btn-default" ng-click="sort('-priority')">Order by Lowest Priority</button>
+					<button type="button" class="btn btn-default" ng-click="sort('text')">Order Alphabetically</button>
+				</div>
+				<div class='container' >
+				<table class='table'>
+					<tbody>
+					<tr ng-repeat='task in tasks | orderBy:predicate' ng-class='getTask(task)'>
+						<td>
+							{{task.text}}
+						</td>
+					</tr>
+					</tbody>	
+				</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body
