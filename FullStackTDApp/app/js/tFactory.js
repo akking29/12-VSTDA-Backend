@@ -6,7 +6,8 @@ angular.module('toDo')
 		function tFactory($http, $q, $log) {
        var service = {
        
-           getTasks: getTasks //, if more functions
+           getTasks: getTasks,
+           postTasks: postTasks //, if more functions
        
        };
        
@@ -36,6 +37,28 @@ angular.module('toDo')
                        $log.error(error);
                        toastr.error('error: '+ error.data + '<br/>status: ' + error.statusText);
                    });
+           
+           return defer.promise;
+
+       }
+
+        function postTasks(toDoTask) {
+           var defer = $q.defer();
+           $http({
+                   method: 'POST',
+                   url: 'http://localhost:61477/api/ToDoTasks',
+                    data: toDoTask
+                 
+               })
+               .then(function(response) {
+                           defer.resolve(response);                
+                      }),
+                   //failure
+                   function(error) {
+                       defer.reject(error);
+                       $log.error(error);
+                       toastr.error('error: '+ error.data + '<br/>status: ' + error.statusText);
+                   }
            
            return defer.promise;
 

@@ -1,14 +1,23 @@
 angular.module('toDo',[]);
 
-angular.module('toDo').controller('tCtrl', ['$scope', 'tFactory', function($scope, tFactory){
-
-	$scope.newTask={};
+angular.module('toDo').controller('tCtrl', ['$scope', '$log','tFactory', function($scope, $log, tFactory){
 	
 	$scope.tasks = [];
 
-	$scope.addTask= function (){
-		$scope.tasks.push($scope.newTask);
-		$scope.newTask={};
+	tFactory.getTasks().then(
+		function(response){
+			$scope.tasks = response.data;
+			console.log($scope.tasks);
+		});
+
+	$scope.addTask= function (toDoTask){
+		tFactory.postTasks(tFactory.toDoTask).then(
+		function (response){
+			$scope.tasks.push(response.data);
+			console.log(response.data);
+		});		
+
+		$scope.addTask={};
 	};
 
 	$scope.predicate='priority';
@@ -28,10 +37,5 @@ angular.module('toDo').controller('tCtrl', ['$scope', 'tFactory', function($scop
 			case "3": return 'info';
 		}
 	};
-	
-	tFactory.getTasks().then(
-		function(response){
-			console.log(response.data);
-		});
-	
+
 }]);

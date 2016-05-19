@@ -12,8 +12,8 @@ namespace FullStackToDo.API.Migrations
                 c => new
                     {
                         ToDoTaskId = c.Int(nullable: false, identity: true),
-                        Task = c.String(),
-                        Text = c.String(),
+                       Task = c.String(),
+                       Text = c.String(),
                         DateCreated = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ToDoTaskId);
