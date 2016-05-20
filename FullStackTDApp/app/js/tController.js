@@ -20,6 +20,16 @@ angular.module('toDo').controller('tCtrl', ['$scope', '$log','tFactory', functio
 		$scope.newTask={};
 	};
 
+	$scope.editTask = function(toDoTaskId,index){
+		tFactory.editTasks(toDoTaskId).then(
+			function(response){
+				console.log(response.data);
+				toastr.success('"' + response.data.text + '" was edited');
+
+			});
+
+	};
+
 	$scope.deleteTask = function(toDoTaskId,index){
 		tFactory.deleteTasks(toDoTaskId).then(
 			function(response){

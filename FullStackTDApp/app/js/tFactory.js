@@ -9,7 +9,8 @@ angular.module('toDo')
        
            getTasks: getTasks,
            postTasks: postTasks,
-           deleteTasks: deleteTasks //, if more functions
+           deleteTasks: deleteTasks,
+           editTasks:editTasks //, if more functions
        
        };
        
@@ -86,5 +87,31 @@ angular.module('toDo')
            
            return defer.promise;
 
-       };
+       }
+
+        function editTasks(toDoTaskId) {
+           var defer = $q.defer();
+           $http({
+                   method: 'PUT',
+                    url: 'http://localhost:61477/api/ToDoTasks/' + toDoTaskId,
+                    data: toDoTaskId
+                 
+               })
+               .then(function(response) {
+                           defer.resolve(response);                
+                      }),
+                   //failure
+                   function(error) {
+                       defer.reject(error);
+                       $log.error(error);
+                       toastr.error('error: '+ error.data + '<br/>status: ' + error.statusText);
+                   }
+           
+           return defer.promise;
+
+       }
+
+
+
+
    };

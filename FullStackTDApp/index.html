@@ -64,10 +64,30 @@
 					<table class='table'>
 					<tbody>
 					<tr ng-repeat='task in tasks | orderBy:predicate' ng-class='getTask(task)'>
-						<td>	
-        <button class="btn btn-default" type="button" ng-click='deleteTask( task.toDoTaskId, tasks.indexOf(task))'>Delete</button> 
-        {{task.text}}
-       
+						<td>
+						
+        <button class="btn btn-default" type="button" ng-click='deleteTask( task.toDoTaskId, tasks.indexOf(task))'>Delete</button>
+
+        <span ng-hide="editing" ng-click="editing = true" class='tasks'>{{task.text}} </span>
+	                  
+	                  <form ng-show="editing" ng-submit="editing = false">
+	                    <label>text:</label>
+	                    <input type="text" ng-model="task.text" placeholder="Task" ng-required/>
+	                    <label>priority:</label>
+	                    <input type="value" ng-model="task.priority" placeholder="Priority" ng-required/>
+	                    <br/>
+	                    <button class="btn" type="submit" ng-click='editTasks(task)'>Save</button>
+	                  </form>
+			         
+			         <form ng-show="visible" ng-submit="editTasks()">
+			            <label>Name:</label>
+			            <input type="text" ng-model="task.text" placeholder="Name" ng-required/>
+			            <label>Date:</label>
+			            <input type="value" ng-model="task.priority" placeholder="Priority" ng-required/>
+			            <br/>
+			            <button class="btn" type="submit" ng-click='editTasks(task)'>Save</button>
+			          </form>
+
 						</td>
 					</tr> 
 					</tbody>	
