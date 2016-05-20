@@ -11,8 +11,7 @@ namespace FullStackToDo.API.Models
         public int ToDoTaskId { get; set; }
         //foreign key *optional
         //user data
-        public string Task { get; set; }
         public string Text { get; set; }
-        public DateTime DateCreated {get; set;}
+        public int Priority { get; set; }
     }
 }

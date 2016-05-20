@@ -4,10 +4,12 @@ angular.module('toDo')
 		tFactory.$inject = ["$http", "$q", "$log"]; //maybe need ""
 
 		function tFactory($http, $q, $log) {
+
        var service = {
        
            getTasks: getTasks,
-           postTasks: postTasks //, if more functions
+           postTasks: postTasks,
+           deleteTasks: deleteTasks //, if more functions
        
        };
        
@@ -25,7 +27,7 @@ angular.module('toDo')
                    function(response) {
                        if (typeof response.data === 'object') {
                            defer.resolve(response);
-                           toastr.success('We stuff to do!');
+                           toastr.success('We have stuff to do!');
                        } else {
                            defer.reject(response);
                            toastr.warning('no top spots found <br/>' + response.config.url);
@@ -63,4 +65,26 @@ angular.module('toDo')
            return defer.promise;
 
        }
+
+        function deleteTasks(toDoTaskId) {
+           var defer = $q.defer();
+           $http({
+                   method: 'DELETE',
+                    url: 'http://localhost:61477/api/ToDoTasks/' + toDoTaskId,
+                    data: toDoTaskId
+                 
+               })
+               .then(function(response) {
+                           defer.resolve(response);                
+                      }),
+                   //failure
+                   function(error) {
+                       defer.reject(error);
+                       $log.error(error);
+                       toastr.error('error: '+ error.data + '<br/>status: ' + error.statusText);
+                   }
+           
+           return defer.promise;
+
+       };
    };

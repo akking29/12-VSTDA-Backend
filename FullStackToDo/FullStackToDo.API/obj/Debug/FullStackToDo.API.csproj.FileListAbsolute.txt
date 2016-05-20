@@ -145,3 +145,6 @@ C:\Dev\Github\12-VSTDA-Backend\FullStackToDo\FullStackToDo.API\obj\Debug\FullSta
 C:\Dev\Github\12-VSTDA-Backend\FullStackToDo\FullStackToDo.API\obj\Debug\FullStackToDo.API.csproj.GenerateResource.Cache
 C:\Dev\Github\12-VSTDA-Backend\FullStackToDo\FullStackToDo.API\obj\Debug\FullStackToDo.API.dll
 C:\Dev\Github\12-VSTDA-Backend\FullStackToDo\FullStackToDo.API\obj\Debug\FullStackToDo.API.pdb
+C:\Dev\GitHub\12-VSTDA-Backend\FullStackToDo\FullStackToDo.API\obj\Debug\FullStackToDo.API.Migrations.RidDateTime.resources
+C:\Dev\GitHub\12-VSTDA-Backend\FullStackToDo\FullStackToDo.API\obj\Debug\FullStackToDo.API.Migrations.ChangedModeltype.resources
+C:\Dev\GitHub\12-VSTDA-Backend\FullStackToDo\FullStackToDo.API\obj\Debug\FullStackToDo.API.Migrations.ChangedTasktoText.resources

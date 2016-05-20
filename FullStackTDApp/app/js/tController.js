@@ -1,23 +1,34 @@
 angular.module('toDo',[]);
 
 angular.module('toDo').controller('tCtrl', ['$scope', '$log','tFactory', function($scope, $log, tFactory){
-	
-	$scope.tasks = [];
 
-	tFactory.getTasks().then(
+		tFactory.getTasks().then(
 		function(response){
 			$scope.tasks = response.data;
 			console.log($scope.tasks);
 		});
 
-	$scope.addTask= function (toDoTask){
-		tFactory.postTasks(tFactory.toDoTask).then(
+
+		$scope.addTask= function (toDoTask){
+		tFactory.postTasks(toDoTask).then(
 		function (response){
+			toastr.success('"' + response.data.text + '" was added!')
 			$scope.tasks.push(response.data);
-			console.log(response.data);
+			
 		});		
 
-		$scope.addTask={};
+		$scope.newTask={};
+	};
+
+	$scope.deleteTask = function(toDoTaskId,index){
+		tFactory.deleteTasks(toDoTaskId).then(
+			function(response){
+				$scope.tasks.splice(index,1);
+				console.log(response.data);
+				toastr.success('"' + response.data.text + '" was deleted');
+
+			});
+
 	};
 
 	$scope.predicate='priority';
@@ -26,16 +37,6 @@ angular.module('toDo').controller('tCtrl', ['$scope', '$log','tFactory', functio
 		$scope.reverse = ($scope.predicate === predicate) ?! $scope.reverse : false;
 		$scope.predicate = predicate;
 
-	};
-
-
-	$scope.getTask = function(task){
-
-		switch(task.priority) {
-			case "1": return 'danger';
-			case "2": return 'warning';
-			case "3": return 'info';
-		}
 	};
 
 }]);

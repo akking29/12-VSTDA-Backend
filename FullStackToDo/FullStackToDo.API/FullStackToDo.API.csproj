@@ -141,6 +141,18 @@
     <Compile Include="Migrations\201605162123098_InitialCreate.Designer.cs">
       <DependentUpon>201605162123098_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605191924276_Rid DateTime.cs" />
+    <Compile Include="Migrations\201605191924276_Rid DateTime.Designer.cs">
+      <DependentUpon>201605191924276_Rid DateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605191930447_Changed Model type .cs" />
+    <Compile Include="Migrations\201605191930447_Changed Model type .Designer.cs">
+      <DependentUpon>201605191930447_Changed Model type .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605191935578_Changed Task to Text.cs" />
+    <Compile Include="Migrations\201605191935578_Changed Task to Text.Designer.cs">
+      <DependentUpon>201605191935578_Changed Task to Text.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ToDoTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +175,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201605162123098_InitialCreate.resx">
       <DependentUpon>201605162123098_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605191924276_Rid DateTime.resx">
+      <DependentUpon>201605191924276_Rid DateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605191930447_Changed Model type .resx">
+      <DependentUpon>201605191930447_Changed Model type .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605191935578_Changed Task to Text.resx">
+      <DependentUpon>201605191935578_Changed Task to Text.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
