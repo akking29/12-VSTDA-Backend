@@ -89,12 +89,12 @@ angular.module('toDo')
 
        }
 
-        function editTasks(toDoTaskId) {
+        function editTasks(task) {
            var defer = $q.defer();
            $http({
                    method: 'PUT',
-                    url: 'http://localhost:61477/api/ToDoTasks/' + toDoTaskId,
-                    data: toDoTaskId
+                    url: 'http://localhost:61477/api/ToDoTasks/' + task.toDoTaskId,
+                    data: task
                  
                })
                .then(function(response) {

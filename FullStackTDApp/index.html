@@ -76,17 +76,9 @@
 	                    <label>priority:</label>
 	                    <input type="value" ng-model="task.priority" placeholder="Priority" ng-required/>
 	                    <br/>
-	                    <button class="btn" type="submit" ng-click='editTasks(task)'>Save</button>
+	                    <button class="btn" type="submit" ng-click='editTask(task)'>Save</button>
 	                  </form>
-			         
-			         <form ng-show="visible" ng-submit="editTasks()">
-			            <label>Name:</label>
-			            <input type="text" ng-model="task.text" placeholder="Name" ng-required/>
-			            <label>Date:</label>
-			            <input type="value" ng-model="task.priority" placeholder="Priority" ng-required/>
-			            <br/>
-			            <button class="btn" type="submit" ng-click='editTasks(task)'>Save</button>
-			          </form>
+			      
 
 						</td>
 					</tr> 
