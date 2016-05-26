@@ -1,117 +1,125 @@
 angular.module('toDo')
-	.factory('tFactory', tFactory);
+    .factory('tFactory', tFactory);
 
-		tFactory.$inject = ["$http", "$q", "$log"]; //maybe need ""
+tFactory.$inject = ["$http", "$q", "$log"]; //maybe need ""
 
-		function tFactory($http, $q, $log) {
+function tFactory($http, $q, $log) {
 
-       var service = {
-       
-           getTasks: getTasks,
-           postTasks: postTasks,
-           deleteTasks: deleteTasks,
-           editTasks:editTasks //, if more functions
-       
-       };
-       
-       return service;
+    var service = {
 
-       ////////////////
+        getTasks: getTasks,
+        postTasks: postTasks,
+        deleteTasks: deleteTasks,
+        editTasks: editTasks //, if more functions
 
-       function getTasks() {
-           var defer = $q.defer();
-           $http({
-                   method: 'GET',
-                   url: 'http://localhost:61477/api/ToDoTasks'
-               })
-               .then(
-                   function(response) {
-                       if (typeof response.data === 'object') {
-                           defer.resolve(response);
-                           toastr.success('We have stuff to do!');
-                       } else {
-                           defer.reject(response);
-                           toastr.warning('no top spots found <br/>' + response.config.url);
-                       }
-                   },
-                   //failure
-                   function(error) {
-                       defer.reject(error);
-                       $log.error(error);
-                       toastr.error('error: '+ error.data + '<br/>status: ' + error.statusText);
-                   });
-           
-           return defer.promise;
+    };
 
-       }
+    return service;
 
-        function postTasks(toDoTask) {
-           var defer = $q.defer();
-           $http({
-                   method: 'POST',
-                   url: 'http://localhost:61477/api/ToDoTasks',
-                    data: toDoTask
-                 
-               })
-               .then(function(response) {
-                           defer.resolve(response);                
-                      }),
-                   //failure
-                   function(error) {
-                       defer.reject(error);
-                       $log.error(error);
-                       toastr.error('error: '+ error.data + '<br/>status: ' + error.statusText);
-                   }
-           
-           return defer.promise;
+    ////////////////
 
-       }
+    function getTasks() {
+        var defer = $q.defer();
+        $http({
+                method: 'GET',
+                url: 'http://localhost:61477/api/ToDoTasks'
+            })
+            .then(
+                function(response) {
+                    if (typeof response.data === 'object') {
+                        defer.resolve(response);
+                        toastr.success('We have stuff to do!');
+                    } else {
+                        defer.reject(response);
+                        toastr.warning('no top spots found <br/>' + response.config.url);
+                    }
+                },
+                //failure
+                function(error) {
+                    defer.reject(error);
+                    $log.error(error);
+                    toastr.error('error: ' + error.data + '<br/>status: ' + error.statusText);
+                });
 
-        function deleteTasks(toDoTaskId) {
-           var defer = $q.defer();
-           $http({
-                   method: 'DELETE',
-                    url: 'http://localhost:61477/api/ToDoTasks/' + toDoTaskId,
-                    data: toDoTaskId
-                 
-               })
-               .then(function(response) {
-                           defer.resolve(response);                
-                      }),
-                   //failure
-                   function(error) {
-                       defer.reject(error);
-                       $log.error(error);
-                       toastr.error('error: '+ error.data + '<br/>status: ' + error.statusText);
-                   }
-           
-           return defer.promise;
+        return defer.promise;
 
-       }
+    }
 
-        function editTasks(task) {
-           var defer = $q.defer();
-           $http({
-                   method: 'PUT',
-                    url: 'http://localhost:61477/api/ToDoTasks/' + task.toDoTaskId,
-                    data: task
-                 
-               })
-               .then(function(response) {
-                           defer.resolve(response);                
-                      }),
-                   //failure
-                   function(error) {
-                       defer.reject(error);
-                       $log.error(error);
-                       toastr.error('error: '+ error.data + '<br/>status: ' + error.statusText);
-                   }
-           
-           return defer.promise;
+    function postTasks(toDoTask) {
+        var defer = $q.defer();
+        $http({
+                method: 'POST',
+                url: 'http://localhost:61477/api/ToDoTasks',
+                data: toDoTask
 
-       }
+            })
+            .then(function(response) {
+              if(typeof response.data === 'object'){
+                defer.resolve(response);
+
+              } else {
+                defer.reject(response);
+                toaster.warning('not added');
+              }
+                
+                console.log(toDoTask);
+            },
+            //failure
+            function(error) {
+                defer.reject(error);
+                $log.error(error);
+                toastr.error('error: ' + error.data.exceptionMessage + '<br/>status: ' + error.statusText);
+            });
+
+        return defer.promise;
+
+    };
+
+    function deleteTasks(toDoTaskId) {
+        var defer = $q.defer();
+        $http({
+                method: 'DELETE',
+                url: 'http://localhost:61477/api/ToDoTasks/' + toDoTaskId,
+                data: toDoTaskId
+
+            })
+            .then(function(response) {
+                defer.resolve(response);
+            }),
+            //failure
+            function(error) {
+                defer.reject(error);
+                $log.error(error);
+                toastr.error('error: ' + error.data + '<br/>status: ' + error.statusText);
+            }
+
+        return defer.promise;
+
+    }
+
+    function editTasks(task) {
+        var defer = $q.defer();
+        $http({
+                method: 'PUT',
+                url: 'http://localhost:61477/api/ToDoTasks/' + task.toDoTaskId,
+                data: task
+
+            })
+            .then(function(response) {
+                defer.resolve(response);
+            }),
+            //failure
+            function(error) {
+                defer.reject(error);
+                $log.error(error);
+                toastr.error('error: ' + error.data + '<br/>status: ' + error.statusText);
+            }
+
+        return defer.promise;
+
+    }
 
 
 
 
-   };
+};
