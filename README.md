@@ -1,6 +1,6 @@
 "#12-VSTDA-Backend" 
 
-05/25 - Version 1.0 baby! This is a barely functioning ToDo application that will enable you to achieve all of your greatest goals. Known issues - 
+05/25 - Version 1.0. This is a barely functioning ToDo application that will enable you to achieve all of your greatest goals. Known issues - 
 
 1. Need to refresh to get correct coloring on tasks, will re-order dynamically though. 
 
